@@ -1,6 +1,6 @@
 if (localStorage.getItem("username") !== null) {
 
-    const connection = new WebSocket(`wss://simple-chat-aedt.herokuapp.com/` /*"ws://127.0.0.1:8080" */, [ localStorage.getItem("username") ]);
+    const connection = new WebSocket(`wss://simple-chat-aedt.herokuapp.com/` /* "ws://127.0.0.1:8080" */, [ localStorage.getItem("username") ]);
     const chat = document.querySelector("#chatbox");
     const button = document.querySelector("#send");
     const select = document.getElementById("usernames");
