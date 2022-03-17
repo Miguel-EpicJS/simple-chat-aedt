@@ -16,13 +16,13 @@
     <div id="wrapper">
         <div id="menu">
             <p class="welcome">People online: <span id="online"></span><b></b></p>
-            <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+            <p class="logout"><a id="exit" href="login.html" onclick="exitChat()">Exit Chat</a></p>
         </div>
 
         <div id="chatbox"></div>
 
-        <div name="message" id="form">
-            <input name="name" type="text" id="name" placeholder="Username" />
+        <div id="form">
+            <input name="name" type="text" id="name" placeholder="Username" disabled />
             <input name="message" type="text" id="message" placeholder="Message" />
             <select id="usernames"></select>
             <input name="send" type="submit" id="send" value="Send" />
