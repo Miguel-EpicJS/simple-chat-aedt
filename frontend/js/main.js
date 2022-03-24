@@ -45,7 +45,7 @@ updateDraggable(draggableArr[0]);
 
 if (localStorage.getItem("username") !== null) {
 
-    const connection = new WebSocket(/* `wss://simple-chat-aedt.herokuapp.com/` */ "wss://127.0.0.1:3000", [localStorage.getItem("username")]);
+    const connection = new WebSocket( `wss://simple-chat-aedt.herokuapp.com/` /*"wss://127.0.0.1:3000"*/, [localStorage.getItem("username")]);
     const chat = document.querySelector("#chatbox");
     const button = document.querySelector("#send");
     const select = document.getElementById("usernames");
