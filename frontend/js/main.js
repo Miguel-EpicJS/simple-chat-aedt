@@ -1,6 +1,6 @@
 /* Draggable Part */
 
-const draggableArr = [document.getElementById("userList")]
+const draggableArr = ["userList"]
 
 function createDragabbleElements(el) {
 
@@ -13,7 +13,7 @@ function createDragabbleElements(el) {
         mousePressX = event.clientX;
         mousePressY = event.clientY;
 
-        this.addEventListener("mousemove", repositionElement, false);
+        el.addEventListener("mousemove", repositionElement, false);
 
         window.addEventListener("mouseup", function () {
             el.removeEventListener("mousemove", repositionElement, false);
@@ -28,24 +28,24 @@ function createDragabbleElements(el) {
 
 }
 
-function updateDraggable() {
 
-    draggableArr.forEach(draggableEl => {
+function updateDraggable(el) {
 
-        createDragabbleElements(draggableEl);
-
-    });
+    for (let i = 0; i < draggableArr.length; i++) {
+        createDragabbleElements(document.getElementById(draggableArr[i]));
+        
+    }
 
 }
 
-updateDraggable();
+updateDraggable(draggableArr[0]);
 
 /* WebSocket Part */
 
 
 if (localStorage.getItem("username") !== null) {
 
-    const connection = new WebSocket(`wss://simple-chat-aedt.herokuapp.com/` /* "ws://127.0.0.1:3000" */, [localStorage.getItem("username")]);
+    const connection = new WebSocket(/* `wss://simple-chat-aedt.herokuapp.com/` */ "wss://127.0.0.1:3000", [localStorage.getItem("username")]);
     const chat = document.querySelector("#chatbox");
     const button = document.querySelector("#send");
     const select = document.getElementById("usernames");
@@ -205,7 +205,7 @@ if (localStorage.getItem("username") !== null) {
             const chatModal = document.getElementById("chatModals");
 
             const modal = `
-            <div id="chat-${el.innerHTML}" style="position: fixed; user-select: none;">
+            <div id="chat-${el.innerHTML}" style="position: fixed; user-select: none;" class="personal-chat">
                 <div class="chat-popup">
                     <div class="form-container">
                         <h1>Chat to <span style="color: orange;">${el.innerHTML}</span></h1>
@@ -223,9 +223,11 @@ if (localStorage.getItem("username") !== null) {
 
             chatModal.innerHTML += modal;
 
-            draggableArr.push(document.getElementById(`chat-${el.innerHTML}`));
+            draggableArr.push(`chat-${el.innerHTML}`);
 
-            updateDraggable();
+            let id = `chat-${el.innerHTML}`;
+
+            updateDraggable(id);
         } else {
             alert("Chat already exist");
         }
